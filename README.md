@@ -5,22 +5,8 @@ The FibriCheck Cordova Camera SDK is a plugin for the Cordova platform. Using th
 This plugin is a wrapper around the FibriCheck native SDK's for iOS and Android. To use this plugin, your project also needs access to these native SDK's. Setting up access differs for each platform.
 
 ### Android
-The [Android SDK](https://github.com/fibricheck/android-camera-sdk) is hosted on GPR (GitHub Package Registry) and requires authentication using GitHub credentials. See ["Creating a personal access token"](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) in the GitHub documentation for more information. To supply these credentials to the build process of your Android project, there are two options: 
+The [Android SDK](https://github.com/fibricheck/android-camera-sdk) is hosted on GPR (GitHub Package Registry) and is made available in this project through [JitPack](https://jitpack.io).
 
-**Environment variables:**
-You can make the credentials available through environment variables.
-```
-export GITHUB_USERNAME=
-export GITHUB_TOKEN=
-```
-
-**Gradle properties:**
-You can store your GitHub credentials locally in a gradle properties file, e.g. `~/.gradle/gradle.properties`:
-
-```
-gpr.user=
-gpr.key=
-```  
 
 ### iOS
 Cordova fetches iOS dependencies via [CocoaPods](https://cocoapods.org/). Your project environment should have access to the [native iOS SDK](https://github.com/fibricheck/ios-camera-sdk). 
