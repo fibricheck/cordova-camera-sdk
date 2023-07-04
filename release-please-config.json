@@ -9,6 +9,11 @@
                     "type": "json",
                     "path": "documentation/project_info.json",
                     "jsonpath": "$.version"
+                },
+                {
+                    "type": "json",
+                    "path": "package.json",
+                    "jsonpath": "$.version"
                 }
             ]
         }
