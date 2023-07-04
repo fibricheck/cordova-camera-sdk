@@ -1,6 +1,7 @@
 {
-    "name": "cordova-camera-sdk",
+    "name": "@fibricheck/cordova-camera-sdk",
     "version": "0.3.4",
+    "title": "FibriCheck Cordova Camera SDK",
     "description": "FibriCheck Camera SDK Plugin",
     "homepage": "https://github.com/fibricheck",
     "author": {
@@ -14,6 +15,9 @@
             "ios",
             "android"
         ]
+    },
+    "publishConfig": {
+        "registry": "https://npm.pkg.github.com/"
     },
     "keywords": [],
     "license": "Proprietary",
