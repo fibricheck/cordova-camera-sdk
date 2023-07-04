@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.5](https://github.com/fibricheck/cordova-camera-sdk/compare/v0.3.4...v0.3.5) (2023-07-04)
+
+
+### Bug Fixes
+
+* Update package.json for correct publishing to GPR registry ([f211eaf](https://github.com/fibricheck/cordova-camera-sdk/commit/f211eaf34e09dbe28d2f263735a74b805fedf801))
+
 ## [0.3.4](https://github.com/fibricheck/cordova-camera-sdk/compare/v0.3.3...v0.3.4) (2023-07-04)
 
 
