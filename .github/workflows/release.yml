@@ -15,6 +15,8 @@ jobs:
       - uses: google-github-actions/release-please-action@v3
         with:
           command: manifest
+    outputs:
+      release_created: ${{ steps.release.outputs.release_created }}
 
   publish-gpr:
     runs-on: ubuntu-latest
