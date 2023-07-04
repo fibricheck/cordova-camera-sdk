@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.4](https://github.com/fibricheck/cordova-camera-sdk/compare/v0.3.3...v0.3.4) (2023-07-04)
+
+
+### Bug Fixes
+
+* Bugfix in CI/CD pipelines ([62b1460](https://github.com/fibricheck/cordova-camera-sdk/commit/62b1460b3b2ee33ceebbd1bd9984512160551617))
+
 ## [0.3.3](https://github.com/fibricheck/cordova-camera-sdk/compare/v0.3.2...v0.3.3) (2023-07-04)
 
 
