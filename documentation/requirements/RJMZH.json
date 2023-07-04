@@ -1,0 +1,13 @@
+{
+  "id": "RJMZH",
+  "name": "Provide Camera permissions",
+  "description": "The user must be requested to give permissions to use the device camera.",
+  "type": "specification",
+  "origin": "user_need",
+  "keyValues": [],
+  "attachments": [],
+  "testIds": [
+    "Q4VAU"
+  ],
+  "updatedTime": 1685708613835
+}

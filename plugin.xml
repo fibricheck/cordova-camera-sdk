@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!-- x-release-please-start-version -->
+<plugin id="com.qompium.fibricheck-cordova-camera-sdk" version="0.2.0"
+    xmlns="http://apache.org/cordova/ns/plugins/1.0"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+<!-- x-release-please-end -->
+    <name>fibricheck-camera-sdk</name>
+    <js-module name="fibricheck-cordova-camera-sdk" src="www/fibricheck-camera-sdk.js">
+        <clobbers target="cordova.plugins.FibriCheckCordovaSDK" />
+    </js-module>
+    <platform name="ios">
+        <config-file parent="/*" target="config.xml">
+            <feature name="FibriCheckCordovaSDK">
+                <param name="ios-package" value="FibriCheckCordovaSDK" />
+            </feature>
+        </config-file>
+        <podspec>
+            <pods use-frameworks="true">
+                <pod tag="v0.1.0" git="git@github.com:fibricheck/ios-native-camera-sdk.git" name="FibriCheckCameraSDK" />
+            </pods>
+        </podspec>
+        <source-file src="src/ios/fibricheck-camera-sdk.swift" />
+    </platform>
+    <platform name="android">
+        <config-file parent="/*" target="res/xml/config.xml">
+            <feature name="FibriCheckCordovaSDK">
+                <param name="android-package" value="com.qompium.fibricheck_cordova_sdk.FibriCheckCordovaSDK" />
+            </feature>
+        </config-file>
+        <config-file parent="/*" target="AndroidManifest.xml">
+            <uses-permission android:name="android.permission.CAMERA" />
+        </config-file>
+        <framework src="src/android/build.gradle" custom="true" type="gradleReference" />
+        <source-file src="src/android/FibriCheckCordovaSDK.java" target-dir="src/com/qompium/fibricheck_cordova_sdk" />
+    </platform>
+</plugin>

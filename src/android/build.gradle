@@ -1,0 +1,9 @@
+repositories {
+    maven { url 'https://jitpack.io' }
+
+}
+
+dependencies {
+    implementation 'com.github.fibricheck:android-camera-sdk:v0.4.0'
+    implementation 'com.google.code.gson:gson:2.10.1'
+}
