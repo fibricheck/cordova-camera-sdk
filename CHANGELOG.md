@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.8](https://github.com/fibricheck/cordova-camera-sdk/compare/v0.3.7...v0.3.8) (2023-08-16)
+
+
+### Bug Fixes
+
+* ability to install package without authentication to git repository ([#10](https://github.com/fibricheck/cordova-camera-sdk/issues/10)) ([35b499c](https://github.com/fibricheck/cordova-camera-sdk/commit/35b499cc421070042160c567f44b9ca02678fe0a))
+
 ## [0.3.7](https://github.com/fibricheck/cordova-camera-sdk/compare/v0.3.6...v0.3.7) (2023-08-16)
 
 
