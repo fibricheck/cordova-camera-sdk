@@ -206,7 +206,7 @@ public class FibriCheckCordovaSDK extends CordovaPlugin {
 
     private void sendEventWithoutData(String eventName){
         if(callbacks.containsKey(eventName)){
-            var callback = callbacks.get(eventName);
+            CallbackContext callback = callbacks.get(eventName);
             PluginResult pluginResult = new PluginResult(PluginResult.Status.OK);
             pluginResult.setKeepCallback(true);
             callback.sendPluginResult(pluginResult);
@@ -215,7 +215,7 @@ public class FibriCheckCordovaSDK extends CordovaPlugin {
 
     private void sendEvent(String eventName, String data){
         if(callbacks.containsKey(eventName)){
-            var callback = callbacks.get(eventName);
+            CallbackContext callback = callbacks.get(eventName);
 
             PluginResult pluginResult = new PluginResult(PluginResult.Status.OK, data);
             pluginResult.setKeepCallback(true);
