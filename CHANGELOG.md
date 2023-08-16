@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.0](https://github.com/fibricheck/cordova-camera-sdk/compare/v0.3.8...v0.4.0) (2023-08-16)
+
+
+### Features
+
+* improve cordova package naming ([#12](https://github.com/fibricheck/cordova-camera-sdk/issues/12)) ([f772284](https://github.com/fibricheck/cordova-camera-sdk/commit/f7722848c39e9ed690280a39e78eb68f3ad60c48))
+
 ## [0.3.8](https://github.com/fibricheck/cordova-camera-sdk/compare/v0.3.7...v0.3.8) (2023-08-16)
 
 
