@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.7](https://github.com/fibricheck/cordova-camera-sdk/compare/v0.3.6...v0.3.7) (2023-08-16)
+
+
+### Bug Fixes
+
+* fix compile issue to support java 10 ([#8](https://github.com/fibricheck/cordova-camera-sdk/issues/8)) ([23db97f](https://github.com/fibricheck/cordova-camera-sdk/commit/23db97f78252f625c4bbe8de547247ebc6d3eca6))
+
 ## [0.3.6](https://github.com/fibricheck/cordova-camera-sdk/compare/v0.3.5...v0.3.6) (2023-07-04)
 
 
