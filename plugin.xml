@@ -16,7 +16,7 @@
         </config-file>
         <podspec>
             <pods use-frameworks="true">
-                <pod tag="v0.1.0" git="git://github.com/fibricheck/ios-camera-sdk.git" name="FibriCheckCameraSDK" />
+                <pod tag="v0.1.0" git="https://github.com/fibricheck/ios-camera-sdk.git" name="FibriCheckCameraSDK" />
             </pods>
         </podspec>
         <source-file src="src/ios/fibricheck-camera-sdk.swift" />
