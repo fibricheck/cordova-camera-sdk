@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='utf-8'?>
 <!-- x-release-please-start-version -->
-<plugin id="com.qompium.fibricheck-cordova-camera-sdk" version="0.3.8"
+<plugin id="cordova-fibricheck-camera-sdk" version="0.3.8"
     xmlns="http://apache.org/cordova/ns/plugins/1.0"
     xmlns:android="http://schemas.android.com/apk/res/android">
 <!-- x-release-please-end -->
-    <name>fibricheck-camera-sdk</name>
-    <js-module name="fibricheck-cordova-camera-sdk" src="www/fibricheck-camera-sdk.js">
+    <name>cordova-fibricheck-camera-sdk</name>
+    <js-module name="cordova-fibricheck-camera-sdk" src="www/fibricheck-camera-sdk.js">
         <clobbers target="cordova.plugins.FibriCheckCordovaSDK" />
     </js-module>
     <platform name="ios">
