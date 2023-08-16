@@ -8,7 +8,7 @@ permissions:
   packages: write
   pull-requests: write
 
-name: Release & Publish @fibricheck/cordova-camera-sdk
+name: Release & Publish @fibricheck/cordova-fibricheck-camera-sdk
 jobs:
   release-new-version:
     runs-on: ubuntu-latest
