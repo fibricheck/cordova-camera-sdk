@@ -1,7 +1,3 @@
-import Cordova
-import Cordova
-import Cordova
-import Cordova
 import Foundation
 import AVFoundation
 import FibriCheckCameraSDK
