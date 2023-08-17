@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.1](https://github.com/fibricheck/cordova-camera-sdk/compare/v0.4.0...v0.4.1) (2023-08-17)
+
+
+### Bug Fixes
+
+* remove unnecessary import in sdk causing a compile failure in certain cordova environments ([#14](https://github.com/fibricheck/cordova-camera-sdk/issues/14)) ([0471901](https://github.com/fibricheck/cordova-camera-sdk/commit/047190107a5e9d8028b25c2a66dc252c5573177f))
+
 ## [0.4.0](https://github.com/fibricheck/cordova-camera-sdk/compare/v0.3.8...v0.4.0) (2023-08-16)
 
 
