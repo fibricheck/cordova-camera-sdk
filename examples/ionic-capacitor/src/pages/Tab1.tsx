@@ -89,9 +89,12 @@ const Tab1: React.FC = () => {
     await fc.initialise();
 
     await fc.updateConfiguration({
-      flashEnabled: true,
-      sampleTime: 30
-    })
+      sampleTime: 15
+    });
+
+    await fc.updateConfiguration({
+      flashEnabled: true
+    });
 
     fc.onMeasurementStart(() => {
       updateEventsStatus("onMeasurementStart");

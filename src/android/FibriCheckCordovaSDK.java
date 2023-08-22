@@ -254,7 +254,43 @@ public class FibriCheckCordovaSDK extends CordovaPlugin {
 
         try {
             JSONObject jsonConfig = new JSONObject(jsonConfigString);
-            fibriChecker.sampleTime = jsonConfig.getInt("sampleTime");
+
+            if(jsonConfig.has("sampleTime")){
+                fibriChecker.sampleTime = jsonConfig.getInt("sampleTime");
+            }
+
+            if(jsonConfig.has("flashEnabled")){
+                fibriChecker.flashEnabled = jsonConfig.getBoolean("flashEnabled");
+            }
+
+            if(jsonConfig.has("gravEnabled")){
+                fibriChecker.gravEnabled = jsonConfig.getBoolean("gravEnabled");
+            }
+
+            if(jsonConfig.has("gyroEnabled")){
+                fibriChecker.gyroEnabled = jsonConfig.getBoolean("gyroEnabled");
+            }
+
+            if(jsonConfig.has("rotationEnabled")){
+                fibriChecker.rotationEnabled = jsonConfig.getBoolean("rotationEnabled");
+            }
+
+            if(jsonConfig.has("movementDetectionEnabled")){
+                fibriChecker.movementDetectionEnabled = jsonConfig.getBoolean("movementDetectionEnabled");
+            }
+
+            if(jsonConfig.has("fingerDetectionExpiryTime")){
+                fibriChecker.fingerDetectionExpiryTime = jsonConfig.getInt("fingerDetectionExpiryTime");
+            }
+
+            if(jsonConfig.has("pulseDetectionExpiryTime")){
+                fibriChecker.pulseDetectionExpiryTime = jsonConfig.getInt("pulseDetectionExpiryTime");
+            }
+
+            if(jsonConfig.has("waitForStartRecordingSignal")){
+                fibriChecker.waitForStartRecordingSignal = jsonConfig.getBoolean("waitForStartRecordingSignal");
+            }
+
 
             callbackContext.success();
 

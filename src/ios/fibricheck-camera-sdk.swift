@@ -3,16 +3,16 @@ import AVFoundation
 import FibriCheckCameraSDK
 
 struct FibriCheckConfiguration: Decodable {
-    let sampleTime: UInt
-    let flashEnabled: Bool
-    let gravEnabled: Bool
-    let gyroEnabled: Bool
-    let accEnabled: Bool
-    let rotationEnabled: Bool
-    let movementDetectionEnabled: Bool
-    let fingerDetectionExpiryTime: Int
-    let pulseDetectionExpiryTime: UInt
-    let waitForStartRecordingSignal: Bool
+    let sampleTime: UInt?
+    let flashEnabled: Bool?
+    let gravEnabled: Bool?
+    let gyroEnabled: Bool?
+    let accEnabled: Bool?
+    let rotationEnabled: Bool?
+    let movementDetectionEnabled: Bool?
+    let fingerDetectionExpiryTime: Int?
+    let pulseDetectionExpiryTime: UInt?
+    let waitForStartRecordingSignal: Bool?
 }
 
 
@@ -62,19 +62,49 @@ struct FibriCheckConfiguration: Decodable {
         let dataString: String = String(describing: command.arguments[0])
         // Get JSON Properties
         let fcConfig: FibriCheckConfiguration = try! JSONDecoder().decode(FibriCheckConfiguration.self, from: dataString.data(using: .utf8)!)
+                
+        if let flashEnabled = fcConfig.flashEnabled {
+            self.fibricheckerInstance?.flashEnabled = flashEnabled
+        }
         
-        self.fibricheckerInstance?.flashEnabled = fcConfig.flashEnabled
-        self.fibricheckerInstance?.sampleTime = fcConfig.sampleTime
-        self.fibricheckerInstance?.gravEnabled = fcConfig.gravEnabled
+        if let sampleTime = fcConfig.sampleTime {
+            self.fibricheckerInstance?.sampleTime = sampleTime
+        }
         
-        self.fibricheckerInstance?.gyroEnabled = fcConfig.gyroEnabled
-        self.fibricheckerInstance?.accEnabled = fcConfig.accEnabled
-        self.fibricheckerInstance?.rotationEnabled = fcConfig.rotationEnabled
-        self.fibricheckerInstance?.movementDetectionEnabled = fcConfig.movementDetectionEnabled
-        // @TODO: Leftover from negative number assignment to UInt in ObjectiveC, needs to be updated
-        self.fibricheckerInstance?.fingerDetectionExpiryTime = UInt.init(bitPattern: fcConfig.fingerDetectionExpiryTime)
-        self.fibricheckerInstance?.pulseDetectionExpiryTime = fcConfig.pulseDetectionExpiryTime
-        self.fibricheckerInstance?.waitForStartRecordingSignal = fcConfig.waitForStartRecordingSignal
+        if let gravEnabled = fcConfig.gravEnabled {
+            self.fibricheckerInstance?.gravEnabled = gravEnabled
+        }
+        
+        if let gyroEnabled = fcConfig.gyroEnabled {
+            self.fibricheckerInstance?.gyroEnabled = gyroEnabled
+        }
+        
+        if let accEnabled = fcConfig.accEnabled {
+            self.fibricheckerInstance?.accEnabled = accEnabled
+        }
+        
+        if let rotationEnabled = fcConfig.rotationEnabled {
+            self.fibricheckerInstance?.rotationEnabled = rotationEnabled
+        }
+        
+        if let movementDetectionEnabled = fcConfig.movementDetectionEnabled {
+            self.fibricheckerInstance?.movementDetectionEnabled = movementDetectionEnabled
+        }
+        
+        if let fingerDetectionExpiryTime = fcConfig.fingerDetectionExpiryTime {
+            // @TODO: Leftover from negative number assignment to UInt in ObjectiveC, needs to be updated
+            self.fibricheckerInstance?.fingerDetectionExpiryTime = UInt.init(bitPattern: fingerDetectionExpiryTime)
+        }
+        
+        if let pulseDetectionExpiryTime = fcConfig.pulseDetectionExpiryTime {
+            self.fibricheckerInstance?.pulseDetectionExpiryTime = pulseDetectionExpiryTime
+
+        }
+        
+        if let waitForStartRecordingSignal = fcConfig.waitForStartRecordingSignal {
+            self.fibricheckerInstance?.waitForStartRecordingSignal = waitForStartRecordingSignal
+        }
+
 
 
         let pluginResult = CDVPluginResult(

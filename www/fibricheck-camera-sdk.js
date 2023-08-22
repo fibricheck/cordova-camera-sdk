@@ -2,19 +2,6 @@ var exec = require('cordova/exec');
 
 const CONST_NATIVE_MODULE_NAME = 'FibriCheckCordovaSDK'
 
-const DEFAULT_CONFIG_PROPS = {
-    sampleTime: 60,
-    flashEnabled: true,
-    gravEnabled: false,
-    gyroEnabled: false,
-    accEnabled: false,
-    rotationEnabled: false,
-    movementDetectionEnabled: true,
-    fingerDetectionExpiryTime: -1,
-    pulseDetectionExpiryTime: 10,
-    waitForStartRecordingSignal: false,
-};
-
 function handleNativeErrorFactory (source) {
     return (err) => {
         console.log(`Native error in ${source}: `, err);
@@ -38,7 +25,6 @@ exports.initialise = function () {
 
 exports.updateConfiguration = function(properties) {
     return new Promise((resolve, reject) => {
-        const mergedProps = {...DEFAULT_CONFIG_PROPS, ...properties};
 
         exec(() => {
             resolve();
@@ -47,7 +33,7 @@ exports.updateConfiguration = function(properties) {
         }, 
         CONST_NATIVE_MODULE_NAME, 
         'updateConfiguration',
-        [JSON.stringify(mergedProps)]
+        [JSON.stringify(properties)]
         );
     })
 }
