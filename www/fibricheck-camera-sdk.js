@@ -210,7 +210,7 @@ exports.onMeasurementError = function(callback){
     }, 
     handleNativeErrorFactory('onMeasurementError'),
     CONST_NATIVE_MODULE_NAME, 
-    'onMeasurementProcessed')
+    'onMeasurementError')
 }
 
 

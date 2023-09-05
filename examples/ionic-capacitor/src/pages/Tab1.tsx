@@ -112,6 +112,11 @@ const Tab1: React.FC = () => {
       fc.stopMeasurement();
     });
 
+    fc.onMeasurementError((error: any) => {
+      updateEventsStatus("onMeasurementError");
+      addLogLine(`onMeasurementError ${error}`)
+    })
+
 
     fc.onSampleReady((ppg:number, raw:number) => {
       if(!receivedEventsRef.current["onSampleReady"]){
@@ -208,7 +213,7 @@ const Tab1: React.FC = () => {
         </IonHeader>
         <IonButton expand="block" onClick={startMeasurement}>Start Measurement</IonButton>
         <IonItem>
-          Heartrate: {heartRate}
+          Heartrate: {heartRate} bpm
         </IonItem>
         <IonItem>
           Seconds remaining: {seconds}
