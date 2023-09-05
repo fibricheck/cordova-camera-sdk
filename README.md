@@ -19,12 +19,12 @@ Cordova fetches iOS dependencies via [CocoaPods](https://cocoapods.org/). Your p
 <!-- x-release-please-start-version -->
 ### Using Ionic Capacitor
 ```
-npm i --save github:fibricheck/cordova-camera-sdk#v0.4.1
+npm i --save github:fibricheck/cordova-camera-sdk#v0.4.2
 ```
 
 ### Using Cordova
 ```
-cordova plugin add https://github.com/fibricheck/cordova-camera-sdk#v0.4.1
+cordova plugin add https://github.com/fibricheck/cordova-camera-sdk#v0.4.2
 ```
 <!-- x-release-please-end -->
 
