@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.4.2](https://github.com/fibricheck/cordova-camera-sdk/compare/v0.4.1...v0.4.2) (2023-09-05)
+
+
+### Bug Fixes
+
+* Add all SDK settings to cordova, remove defaults from cordova layer, allow setting individual settings ([#16](https://github.com/fibricheck/cordova-camera-sdk/issues/16)) ([948a1ef](https://github.com/fibricheck/cordova-camera-sdk/commit/948a1ef04ceae6feed68bc67ef3cbbf47cab2938))
+* fix onMeasurementError callback that overwrites onMeasurementProcessed callback (FCS-42) ([#17](https://github.com/fibricheck/cordova-camera-sdk/issues/17)) ([3c8646c](https://github.com/fibricheck/cordova-camera-sdk/commit/3c8646cdcf1379c41d4f4fdf4a65ceb0edc3173a))
+
 ## [0.4.1](https://github.com/fibricheck/cordova-camera-sdk/compare/v0.4.0...v0.4.1) (2023-08-17)
 
 
