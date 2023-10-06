@@ -120,12 +120,6 @@ const Tab1: React.FC = () => {
     fc.onMeasurementProcessed((data) => {
       updateEventsStatus("onMeasurementProcessed");
       addLogLine("onMeasurementProcessed")
-
-      fetch("https://webhook.site/58676b27-75c0-432b-b982-aa34ed47f4f8",{method: "POST", body: JSON.stringify(data)}).then(res => {
-        console.log("MEASUREMENT SENT");
-      })
- 
-
       fc.stopMeasurement();
     });
 
