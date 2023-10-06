@@ -83,9 +83,6 @@ public class FibriCheckCordovaSDK extends CordovaPlugin {
             public void run() {
 
                 try {
-
-        
-
                     linearLayout = new LinearLayout(context);
                     linearLayout.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT));
                     linearLayout.setOrientation(LinearLayout.HORIZONTAL);
