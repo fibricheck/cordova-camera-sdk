@@ -16,7 +16,6 @@ struct FibriCheckConfiguration: Decodable {
 }
 
 
-
 @objc(FibriCheckCordovaSDK) class FibriCheckCordovaSDK: CDVPlugin {
 
     var fibricheckerInstance: FibriChecker?
@@ -35,7 +34,7 @@ struct FibriCheckConfiguration: Decodable {
                 
                 // If the system hasn't determined the user's authorization status,
                 // explicitly prompt them for approval.
-                if status == .notDetermined {
+                if status != .authorized {
                     isAuthorized = await AVCaptureDevice.requestAccess(for: .video)
                 }
                 
@@ -44,7 +43,7 @@ struct FibriCheckConfiguration: Decodable {
         }
         
         Task {
-            guard await isAuthorized else {return}
+            await isAuthorized         
 
             rootSelf.fibricheckerInstance = FibriChecker()
 
@@ -117,15 +116,45 @@ struct FibriCheckConfiguration: Decodable {
     func startMeasurement(command: CDVInvokedUrlCommand) {
         
         let rootSelf = self
-        
-        Task.detached(priority: .background){
-            rootSelf.fibricheckerInstance?.startMeasurement();
+
+        var isAuthorized: Bool {
+            get async {
+                let status = AVCaptureDevice.authorizationStatus(for: .video)
+                
+                // Determine if the user previously authorized camera access.
+                var isAuthorized = status == .authorized
+                
+                // If the system hasn't determined the user's authorization status,
+                // explicitly prompt them for approval.
+                if status != .authorized {
+                    isAuthorized = await AVCaptureDevice.requestAccess(for: .video)
+                }
+                
+                return isAuthorized
+            }
         }
 
-        let pluginResult = CDVPluginResult(
-                status: CDVCommandStatus_OK
-            )
-        rootSelf.commandDelegate!.send(pluginResult, callbackId: command.callbackId)
+        Task {
+            guard await isAuthorized else {
+                rootSelf.commandDelegate!.send(
+                    CDVPluginResult(
+                        status: CDVCommandStatus_ERROR,
+                        messageAs: "NO_CAMERA_PERMISSION"
+                    ),
+                    callbackId: command.callbackId
+                )
+                return
+            }
+            
+            Task.detached(priority: .background){
+                rootSelf.fibricheckerInstance?.startMeasurement();
+            }
+
+            let pluginResult = CDVPluginResult(
+                    status: CDVCommandStatus_OK
+                )
+            rootSelf.commandDelegate!.send(pluginResult, callbackId: command.callbackId)
+        }
     }
 
     @objc(stopMeasurement:)

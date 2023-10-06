@@ -82,124 +82,133 @@ public class FibriCheckCordovaSDK extends CordovaPlugin {
             @Override
             public void run() {
 
-                linearLayout = new LinearLayout(context);
-                linearLayout.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT));
-                linearLayout.setOrientation(LinearLayout.HORIZONTAL);
+                try {
 
-                cordova.getActivity().addContentView(linearLayout, linearLayout.getLayoutParams());
+        
 
-                if (!cordova.hasPermission(CAMERA)) {
-                    getCameraPermission(CAMERA_REQ_CODE);
+                    linearLayout = new LinearLayout(context);
+                    linearLayout.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT));
+                    linearLayout.setOrientation(LinearLayout.HORIZONTAL);
+
+                    cordova.getActivity().addContentView(linearLayout, linearLayout.getLayoutParams());
+
+                    if (!cordova.hasPermission(CAMERA)) {
+                        getCameraPermission(CAMERA_REQ_CODE);
+                    }
+
+                    // Get Root View
+                    fibriChecker = new FibriChecker.FibriBuilder(linearLayout.getContext(), linearLayout).build();
+
+                    fibriChecker.setFibriListener(new FibriListener() {
+                        @Override
+                        public void onSampleReady(final double ppg, double raw) {
+                            try {
+                                JSONObject obj = new JSONObject();
+                                obj.put("ppg", ppg);
+                                obj.put("raw", raw);
+
+                                self.sendEvent("onSampleReady",obj.toString());
+
+                            }catch(Exception e){
+                                Log.e(TAG, e.toString());
+                            }
+                        }
+
+                        @Override
+                        public void onFingerDetected() {
+                            self.sendEventWithoutData("onFingerDetected");
+                        }
+
+                        @Override
+                        public void onFingerRemoved(double y, double v, double stdDevY) {
+                            try {
+                                JSONObject obj = new JSONObject();
+                                obj.put("y", y);
+                                obj.put("v", v);
+                                obj.put("stdDev", stdDevY);
+                                self.sendEvent("onFingerRemoved", obj.toString());
+                            } catch (JSONException e){
+                                Log.e(TAG, e.toString());
+                            }
+                        }
+
+                        @Override
+                        public void onCalibrationReady() {
+                            self.sendEventWithoutData("onCalibrationReady");
+                        }
+
+                        @Override
+                        public void onHeartBeat(int value) {
+                            self.sendEvent("onHeartBeat", Integer.toString(value));
+                        }
+
+                        @Override
+                        public void onTimeRemaining(int seconds) {
+                            // Choosing for `onTimeRemaining`, most consistent across Camera SDK's (iOS, React Native, Flutter)
+                            self.sendEvent("onTimeRemaining", Integer.toString(seconds));
+                        }
+
+                        @Override
+                        public void onMeasurementFinished() {
+                            self.sendEventWithoutData("onMeasurementFinished");
+                        }
+
+                        @Override
+                        public void onMeasurementStart() {
+                            self.sendEventWithoutData("onMeasurementStart");
+                        }
+
+                        @Override
+                        public void onFingerDetectionTimeExpired() {
+                            self.sendEventWithoutData("onFingerDetectionTimeExpired");
+                        }
+
+                        @Override
+                        public void onPulseDetected() {
+                            self.sendEventWithoutData("onPulseDetected");
+                        }
+
+                        @Override
+                        public void onPulseDetectionTimeExpired() {
+                            self.sendEventWithoutData("onPulseDetectionTimeExpired");
+                        }
+
+                        @Override
+                        public void onMovementDetected() {
+                            self.sendEventWithoutData("onMovementDetected");
+                        }
+
+                        @Override
+                        public void onMeasurementProcessed(MeasurementData measurementData) {
+                            try {
+                                Log.i(TAG, "Processed FibriCheck Measurement");
+                                Gson gson = new Gson();
+                                JSONObject jsonObject = new JSONObject(gson.toJson(measurementData));
+                                String measurementJson = jsonObject.toString();
+
+                                self.sendEvent("onMeasurementProcessed", measurementJson);
+
+                            } catch(Exception e) {
+                                Log.e(TAG, e.toString());
+                            }
+                        }
+
+                        @Override
+                        public void onMeasurementError(String message) {
+                            try {
+                                self.sendEvent("onMeasurementError", message);
+                            } catch(Exception e) {
+                                Log.e(TAG, e.toString());
+                            }
+                    }
+                    });
+
+                    callbackContext.success();
+                } catch (Error e){
+                    PluginResult pluginResult = new PluginResult(PluginResult.Status.ERROR);
+                    pluginResult.setKeepCallback(true);
+                    callbackContext.error(e.toString());
                 }
-
-                // Get Root View
-                fibriChecker = new FibriChecker.FibriBuilder(linearLayout.getContext(), linearLayout).build();
-
-                fibriChecker.setFibriListener(new FibriListener() {
-                    @Override
-                    public void onSampleReady(final double ppg, double raw) {
-                        try {
-                            JSONObject obj = new JSONObject();
-                            obj.put("ppg", ppg);
-                            obj.put("raw", raw);
-
-                            self.sendEvent("onSampleReady",obj.toString());
-
-                        }catch(Exception e){
-                            Log.e(TAG, e.toString());
-                        }
-                    }
-
-                    @Override
-                    public void onFingerDetected() {
-                        self.sendEventWithoutData("onFingerDetected");
-                    }
-
-                    @Override
-                    public void onFingerRemoved(double y, double v, double stdDevY) {
-                        try {
-                            JSONObject obj = new JSONObject();
-                            obj.put("y", y);
-                            obj.put("v", v);
-                            obj.put("stdDev", stdDevY);
-                            self.sendEvent("onFingerRemoved", obj.toString());
-                        } catch (JSONException e){
-                            Log.e(TAG, e.toString());
-                        }
-                    }
-
-                    @Override
-                    public void onCalibrationReady() {
-                        self.sendEventWithoutData("onCalibrationReady");
-                    }
-
-                    @Override
-                    public void onHeartBeat(int value) {
-                        self.sendEvent("onHeartBeat", Integer.toString(value));
-                    }
-
-                    @Override
-                    public void onTimeRemaining(int seconds) {
-                        // Choosing for `onTimeRemaining`, most consistent across Camera SDK's (iOS, React Native, Flutter)
-                        self.sendEvent("onTimeRemaining", Integer.toString(seconds));
-                    }
-
-                    @Override
-                    public void onMeasurementFinished() {
-                        self.sendEventWithoutData("onMeasurementFinished");
-                    }
-
-                    @Override
-                    public void onMeasurementStart() {
-                        self.sendEventWithoutData("onMeasurementStart");
-                    }
-
-                    @Override
-                    public void onFingerDetectionTimeExpired() {
-                        self.sendEventWithoutData("onFingerDetectionTimeExpired");
-                    }
-
-                    @Override
-                    public void onPulseDetected() {
-                        self.sendEventWithoutData("onPulseDetected");
-                    }
-
-                    @Override
-                    public void onPulseDetectionTimeExpired() {
-                        self.sendEventWithoutData("onPulseDetectionTimeExpired");
-                    }
-
-                    @Override
-                    public void onMovementDetected() {
-                        self.sendEventWithoutData("onMovementDetected");
-                    }
-
-                    @Override
-                    public void onMeasurementProcessed(MeasurementData measurementData) {
-                        try {
-                            Log.i(TAG, "Processed FibriCheck Measurement");
-                            Gson gson = new Gson();
-                            JSONObject jsonObject = new JSONObject(gson.toJson(measurementData));
-                            String measurementJson = jsonObject.toString();
-
-                            self.sendEvent("onMeasurementProcessed", measurementJson);
-
-                        } catch(Exception e) {
-                            Log.e(TAG, e.toString());
-                        }
-                    }
-
-                    @Override
-                    public void onMeasurementError(String message) {
-                        try {
-                            self.sendEvent("onMeasurementError", message);
-                        } catch(Exception e) {
-                            Log.e(TAG, e.toString());
-                        }
-                   }
-                });
-
-                callbackContext.success();
             }
         });
     }
@@ -230,6 +239,10 @@ public class FibriCheckCordovaSDK extends CordovaPlugin {
     }
 
     private void startMeasurement(CallbackContext callbackContext) {
+
+        if (!cordova.hasPermission(CAMERA)) {
+            callbackContext.error("NO_CAMERA_PERMISSON");
+        }
 
        cordova.getActivity().runOnUiThread(new Runnable() {
            @Override
