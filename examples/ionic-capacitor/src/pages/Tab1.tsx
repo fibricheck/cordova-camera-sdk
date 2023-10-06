@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { ResponsiveContainer, LineChart, Line } from 'recharts';
 import { IonButton, IonItem, IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonList, IonLabel } from '@ionic/react';
-import { mean, number, std } from 'mathjs';
+import { add, mean, number, std } from 'mathjs';
 import './Tab1.css';
 
 const { FibriCheckCordovaSDK: fc } = cordova.plugins;
@@ -86,7 +86,17 @@ const Tab1: React.FC = () => {
     });
   }
   const startMeasurement = async () => {
-    await fc.initialise();
+
+    addLogLine(`startMeasurement`);
+
+    try {
+      await fc.initialise();
+      addLogLine(`initialise success`);
+    } catch (error) {
+      addLogLine(`initialise error ${error}`);
+      console.log(`Init error: ${error}`);
+      return;
+    }
 
     await fc.updateConfiguration({
       sampleTime: 15
@@ -110,8 +120,6 @@ const Tab1: React.FC = () => {
     fc.onMeasurementProcessed((data) => {
       updateEventsStatus("onMeasurementProcessed");
       addLogLine("onMeasurementProcessed")
-
-
       fc.stopMeasurement();
     });
 
@@ -198,7 +206,16 @@ const Tab1: React.FC = () => {
     
     }, 1000);
 
-    await fc.startMeasurement();
+    console.log("Start Measurement");
+
+    try {
+      await fc.startMeasurement();
+      addLogLine('startMeasurement success');
+    } catch (e){
+      addLogLine(`startMeasurement error ${e}`);
+      console.log(`Start measurement error: ${e}`);
+    }
+
   }
 
   return (
