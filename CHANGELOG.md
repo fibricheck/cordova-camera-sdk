@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.0.0](https://github.com/fibricheck/cordova-camera-sdk/compare/v0.4.3...v1.0.0) (2023-10-09)
+
+
+### Bug Fixes
+
+* pass accEnabled flag through to native Android layer [FCS-51]([#23](https://github.com/fibricheck/cordova-camera-sdk/issues/23)) ([2e66ebe](https://github.com/fibricheck/cordova-camera-sdk/commit/2e66ebe8b4a042808524b8451b0d4fc572e5917d))
+* throw error in startMeasurement on incorrect camera permissions [FCS-49] ([#21](https://github.com/fibricheck/cordova-camera-sdk/issues/21)) ([935885f](https://github.com/fibricheck/cordova-camera-sdk/commit/935885ff1c0f4a2b9237bbe909c9879b48b5c0be))
+
+
+### Miscellaneous Chores
+
+* release 1.0.0 ([f7d5dfc](https://github.com/fibricheck/cordova-camera-sdk/commit/f7d5dfcc63027f9a977357bfa88ea9de6c42c3a3))
+
 ## [0.4.3](https://github.com/fibricheck/cordova-camera-sdk/compare/v0.4.2...v0.4.3) (2023-10-04)
 
 

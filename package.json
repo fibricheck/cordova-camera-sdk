@@ -1,6 +1,6 @@
 {
     "name": "@fibricheck/cordova-fibricheck-camera-sdk",
-    "version": "0.4.3",
+    "version": "1.0.0",
     "title": "FibriCheck Cordova Camera SDK",
     "description": "FibriCheck Camera SDK Plugin",
     "homepage": "https://github.com/fibricheck",
