@@ -282,7 +282,7 @@ public class FibriCheckCordovaSDK extends CordovaPlugin {
             }
 
             if(jsonConfig.has("accEnabled")){
-                fibriChecker.gyroEnabled = jsonConfig.getBoolean("accEnabled");
+                fibriChecker.accEnabled = jsonConfig.getBoolean("accEnabled");
             }
 
             if(jsonConfig.has("rotationEnabled")){
