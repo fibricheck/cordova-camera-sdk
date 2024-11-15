@@ -4,10 +4,27 @@ import { IonButton, IonItem, IonContent, IonHeader, IonPage, IonTitle, IonToolba
 import { add, mean, number, std } from 'mathjs';
 import './Tab1.css';
 
+declare let cordova: any
 const { FibriCheckCordovaSDK: fc } = cordova.plugins;
 
+interface ReceivedEvents {
+  onSampleReady: boolean;
+  onFingerDetected: boolean;
+  onFingerRemoved: boolean;
+  onCalibrationReady: boolean;
+  onHeartBeat: boolean; 
+  onTimeRemaining: boolean;
+  onMeasurementFinished: boolean;
+  onMeasurementStart: boolean;
+  onFingerDetectionTimeExpired: boolean;
+  onPulseDetected: boolean;
+  onPulseDetectionTimeExpired: boolean;
+  onMovementDetected: boolean;
+  onMeasurementProcessed: boolean;
+  onMeasurementError: boolean;
+}
 
-const timeDiffArr = [];
+const timeDiffArr: number[] = [];
 let latestTS = 0;
 
 function logTime(){
@@ -23,9 +40,7 @@ function logTime(){
 }
 
 const Tab1: React.FC = () => {
-
   let [log, setLog] = useState<JSX.Element[]>([]);
-
   let [receivedEvents, setEvents] = useState({
     onSampleReady: false,
     onFingerDetected: false,
@@ -43,9 +58,7 @@ const Tab1: React.FC = () => {
     onMeasurementError: false
   });
 
-  const receivedEventsRef = useRef<Object>();
-  receivedEventsRef.current = receivedEvents;
-
+  const receivedEventsRef = useRef<ReceivedEvents>(receivedEvents);
 
   const [dataPoints, setDataPoints] = useState<Object[]>([]);
   const [heartRate, setHeartRate] = useState<number>(0);
@@ -75,7 +88,7 @@ const Tab1: React.FC = () => {
   
   const updateEventsStatus = (eventName: string) => {
 
-    const newEvent = {}
+    const newEvent: { [key: string] : boolean } = {}
     newEvent[eventName] = true;
 
     setEvents((prevState) => {
@@ -117,7 +130,7 @@ const Tab1: React.FC = () => {
 
     });
 
-    fc.onMeasurementProcessed((data) => {
+    fc.onMeasurementProcessed(() => {
       updateEventsStatus("onMeasurementProcessed");
       addLogLine("onMeasurementProcessed")
       fc.stopMeasurement();
@@ -130,7 +143,7 @@ const Tab1: React.FC = () => {
 
 
     fc.onSampleReady((ppg:number, raw:number) => {
-      if(!receivedEventsRef.current["onSampleReady"]){
+      if(!receivedEventsRef.current.onSampleReady){
         addLogLine("onSampleReady")
       }
       updateEventsStatus("onSampleReady");

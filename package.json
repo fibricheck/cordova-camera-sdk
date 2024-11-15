@@ -1,26 +1,26 @@
 {
-    "name": "@fibricheck/cordova-fibricheck-camera-sdk",
-    "version": "1.0.0",
-    "title": "FibriCheck Cordova Camera SDK",
-    "description": "FibriCheck Camera SDK Plugin",
-    "homepage": "https://github.com/fibricheck",
-    "author": {
-        "name": "FibriCheck",
-        "email": "development@fibricheck.com",
-        "url": "https://www.fibricheck.com"
-    },
-    "cordova": {
-        "id": "FibriCheckCordovaSDK",
-        "platforms": [
-            "ios",
-            "android"
-        ]
-    },
-    "publishConfig": {
-        "registry": "https://npm.pkg.github.com/"
-    },
-    "keywords": [],
-    "license": "Proprietary",
-    "dependencies": {},
-    "scripts": {}
+  "name": "@fibricheck/cordova-fibricheck-camera-sdk",
+  "version": "1.0.0",
+  "title": "FibriCheck Cordova Camera SDK",
+  "description": "FibriCheck Camera SDK Plugin",
+  "homepage": "https://github.com/fibricheck",
+  "author": {
+    "name": "FibriCheck",
+    "email": "development@fibricheck.com",
+    "url": "https://www.fibricheck.com"
+  },
+  "cordova": {
+    "id": "FibriCheckCordovaSDK",
+    "platforms": [
+      "ios",
+      "android"
+    ]
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
+  "keywords": [],
+  "license": "Proprietary",
+  "dependencies": {},
+  "scripts": {}
 }
