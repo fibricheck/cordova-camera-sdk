@@ -1,3 +1,5 @@
 .DS_Store
 .gradle
 node_modules
+examples/ionic-capacitor/cypress/videos
+examples/ionic-capacitor/cypress/screenshots
